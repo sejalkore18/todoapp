@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "808545950730",
+    "project_id": "todoca-a873d",
+    "storage_bucket": "todoca-a873d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808545950730:android:3dfd19ea35ab095f10d3f3",
+        "android_client_info": {
+          "package_name": "com.example.clean_architecture_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808545950730-eavmb2ogbe45ag2rtuk5m2e6kri8dqee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEsZFF90dx9Ypk1Tpl_VT4BEaouv-QplI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808545950730-eavmb2ogbe45ag2rtuk5m2e6kri8dqee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,17 @@
+
+{
+"version": "2.0.6",
+"configurations": [
+
+    {
+        "name": "Flutter App",
+        "request": "launch",
+        "type": "dart",
+        "args": [
+            "--web-renderer",
+             "html"
+        ],
+        "program": "lib/main.dart"
+    }
+]
+}
