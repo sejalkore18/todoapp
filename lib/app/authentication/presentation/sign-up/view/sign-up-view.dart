@@ -1,4 +1,3 @@
-import 'package:clean_architecture_project/app/authentication/presentation/sign-in/sign-in-state-machine.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-controller.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-state-machine.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/view/mobile/sign-up-error-mobile-view.dart';
@@ -32,7 +31,7 @@ class SignUpViewState
           case SignUpLoadingState:
             return SignUpLoadingMobileView();
 
-          case SignInErrorState:
+          case SignUpErrorState:
             return SignUpErrorMobileView();
 
           default:
