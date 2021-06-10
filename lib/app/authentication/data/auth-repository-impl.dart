@@ -22,4 +22,12 @@ class AuthRepositoryImpl implements AuthRepository {
     await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
+
+  @override
+  bool checkUserSignInStatus() {
+    if (_firebaseAuth.currentUser == null)
+      return false;
+    else
+      return true;
+  }
 }
