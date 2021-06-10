@@ -27,9 +27,9 @@ class SignUpController extends Controller {
   void onDispose() {
     _presenter.dispose();
     super.onDisposed();
+  }
 
-    SignUpState getCurrentState() {
-      return _stateMachine.getCurrentState();
-    }
+  SignUpState getCurrentState() {
+    return _stateMachine.getCurrentState();
   }
 }
