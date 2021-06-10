@@ -26,13 +26,13 @@ class SignInStateMachine extends StateMachine<SignInState, SignInEvent> {
 
 class SignInState {}
 
-class SignInEvent {}
-
 class SignInInitState extends SignInState {}
 
 class SignInLoadingState extends SignInState {}
 
 class SignInErrorState extends SignInState {}
+
+class SignInEvent {}
 
 class SignInClickEvent extends SignInEvent {}
 
