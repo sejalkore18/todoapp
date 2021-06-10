@@ -27,9 +27,9 @@ class SplashScreenController extends Controller {
   void onDispose() {
     _presenter.dispose();
     super.onDisposed();
+  }
 
-    SplashScreenState getCurrentState() {
-      return _stateMachine.getCurrentState();
-    }
+  SplashScreenState getCurrentState() {
+    return _stateMachine.getCurrentState();
   }
 }
