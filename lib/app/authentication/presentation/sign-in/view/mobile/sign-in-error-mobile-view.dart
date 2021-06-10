@@ -21,7 +21,8 @@ class SignInErrorMobileView extends StatelessWidget {
               labelText: "Password",
             ),
           ),
-          TextButton(onPressed: () {}, child: Text("Sign In"))
+          TextButton(onPressed: () {}, child: Text("Sign In")),
+          Text('Error')
         ],
       ),
     ));
