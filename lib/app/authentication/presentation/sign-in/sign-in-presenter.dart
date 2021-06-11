@@ -1,8 +1,17 @@
+import 'package:clean_architecture_project/app/authentication/domain/usecase/user-sign-in-usecase.dart';
+import 'package:clean_architecture_project/core/presentation/observer.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class SignInPresenter extends Presenter {
-  SignInPresenter();
+  final UserSignInUseCase _userSignInUseCase;
+  SignInPresenter(this._userSignInUseCase);
 
   @override
-  dispose() {}
+  dispose() {
+    _userSignInUseCase.dispose();
+  }
+
+  void userSignInStatus(UseCaseObserver observer) {
+    _userSignInUseCase.execute(observer);
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-presenter.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-state-machine.dart';
 import 'package:clean_architecture_project/app/navigation-service.dart';
+import 'package:clean_architecture_project/core/presentation/observer.dart';
 import 'package:clean_architecture_project/injection_container.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -31,5 +32,22 @@ class SignUpController extends Controller {
 
   SignUpState getCurrentState() {
     return _stateMachine.getCurrentState();
+  }
+
+  void checkUserSignUp() {
+    _presenter.userSignUpStatus(
+      new UseCaseObserver(
+        () {},
+        (error) {
+          _navigationService.navigateTo(NavigationService.signInPageRoute,
+              shouldReplace: true);
+        },
+        onNextFunc: (bool signUpStatus) {
+          if (signUpStatus)
+            _navigationService.navigateTo(NavigationService.homePageRoute,
+                shouldReplace: true);
+        },
+      ),
+    );
   }
 }

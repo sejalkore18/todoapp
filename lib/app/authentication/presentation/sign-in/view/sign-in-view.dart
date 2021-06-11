@@ -27,13 +27,19 @@ class SignInViewState
 
         switch (currentStateType) {
           case SignInInitState:
-            return SignInInitMobileView();
+            return SignInInitMobileView(
+              controller: controller,
+            );
 
           case SignInLoadingState:
-            return SignInLoadingMobileView();
+            return SignInLoadingMobileView(
+              controller: controller,
+            );
 
           case SignInErrorState:
-            return SignInErrorMobileView();
+            return SignInErrorMobileView(
+              controller: controller,
+            );
 
           default:
             throw Exception("Unknown State: $currentStateType: SignInView");

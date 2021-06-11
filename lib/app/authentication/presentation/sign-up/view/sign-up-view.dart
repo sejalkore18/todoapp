@@ -26,13 +26,19 @@ class SignUpViewState
 
         switch (currentStateType) {
           case SignUpInitState:
-            return SignUpInitMobileView();
+            return SignUpInitMobileView(
+              controller: controller,
+            );
 
           case SignUpLoadingState:
-            return SignUpLoadingMobileView();
+            return SignUpLoadingMobileView(
+              controller: controller,
+            );
 
           case SignUpErrorState:
-            return SignUpErrorMobileView();
+            return SignUpErrorMobileView(
+              controller: controller,
+            );
 
           default:
             throw Exception("Unknown State: $currentStateType: SignUpView");
