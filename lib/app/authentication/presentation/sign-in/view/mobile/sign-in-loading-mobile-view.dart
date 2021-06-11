@@ -1,7 +1,10 @@
+import 'package:clean_architecture_project/app/authentication/presentation/sign-in/sign-in-controller.dart';
 import 'package:flutter/material.dart';
 
 class SignInLoadingMobileView extends StatelessWidget {
-  const SignInLoadingMobileView({Key? key}) : super(key: key);
+  final SignInController controller;
+  const SignInLoadingMobileView({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
