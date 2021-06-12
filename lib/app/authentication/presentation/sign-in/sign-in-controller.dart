@@ -2,6 +2,7 @@ import 'package:clean_architecture_project/app/authentication/presentation/sign-
 import 'package:clean_architecture_project/app/authentication/presentation/sign-in/sign-in-state-machine.dart';
 import 'package:clean_architecture_project/app/navigation-service.dart';
 import 'package:clean_architecture_project/core/presentation/observer.dart';
+import 'package:clean_architecture_project/core/presentation/state-machine.dart';
 import 'package:clean_architecture_project/injection_container.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -43,6 +44,8 @@ class SignInController extends Controller {
         },
         (error) {
           //New State = Error State
+          _stateMachine.onEvent(new SignInErrorEvent());
+          refreshUI();
         },
       ),
       email: email,
