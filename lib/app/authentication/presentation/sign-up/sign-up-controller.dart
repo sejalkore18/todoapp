@@ -42,7 +42,8 @@ class SignUpController extends Controller {
                 shouldReplace: true);
           },
           (error) {
-            //New State = Error State
+            _stateMachine.onEvent(new SignUpErrorEvent());
+            refreshUI();
           },
         ),
         email: email,
