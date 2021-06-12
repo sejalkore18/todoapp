@@ -11,7 +11,9 @@ class SignUpPresenter extends Presenter {
     _userSignUpUseCase.dispose();
   }
 
-  void userSignUpStatus(UseCaseObserver observer) {
-    _userSignUpUseCase.execute(observer);
+  void userSignUpStatus(UseCaseObserver observer,
+      {required String email, required String password}) {
+    _userSignUpUseCase.execute(observer,
+        new UserSignUpUseCaseParams(email: email, password: password));
   }
 }

@@ -34,20 +34,18 @@ class SignUpController extends Controller {
     return _stateMachine.getCurrentState();
   }
 
-  void checkUserSignUp() {
+  void userSignUp({required String email, required String password}) {
     _presenter.userSignUpStatus(
-      new UseCaseObserver(
-        () {},
-        (error) {
-          _navigationService.navigateTo(NavigationService.signInPageRoute,
-              shouldReplace: true);
-        },
-        onNextFunc: (bool signUpStatus) {
-          if (signUpStatus)
+        new UseCaseObserver(
+          () {
             _navigationService.navigateTo(NavigationService.homePageRoute,
                 shouldReplace: true);
-        },
-      ),
-    );
+          },
+          (error) {
+            //New State = Error State
+          },
+        ),
+        email: email,
+        password: password);
   }
 }
