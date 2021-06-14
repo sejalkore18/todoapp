@@ -1,10 +1,26 @@
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-controller.dart';
+import 'package:clean_architecture_project/app/authentication/presentation/sign-up/view/widgets/signup-content-body.dart';
 import 'package:flutter/material.dart';
 
-class SignUpErrorMobileView extends StatelessWidget {
+class SignUpErrorMobileView extends StatefulWidget {
   final SignUpController controller;
   const SignUpErrorMobileView({Key? key, required this.controller})
       : super(key: key);
+
+  @override
+  _SignUpErrorMobileViewState createState() => _SignUpErrorMobileViewState();
+}
+
+class _SignUpErrorMobileViewState extends State<SignUpErrorMobileView> {
+  late TextEditingController _emailTextController;
+  late TextEditingController _passwordTextController;
+
+  @override
+  void initState() {
+    _emailTextController = new TextEditingController();
+    _passwordTextController = new TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +29,10 @@ class SignUpErrorMobileView extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
         children: [
-          SizedBox(height: 100),
-          Text("Sign Up"),
-          TextFormField(
-            decoration:
-                InputDecoration(labelText: "Email", hintText: "abc@gmail.com"),
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              labelText: "Password",
-            ),
-          ),
-          TextButton(onPressed: () {}, child: Text("Sign Up")),
+          SignUpContentBody(
+              emailTextController: _emailTextController,
+              passwordTextController: _passwordTextController,
+              controller: widget.controller),
           Text("Error")
         ],
       ),

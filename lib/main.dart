@@ -1,3 +1,4 @@
+import 'package:clean_architecture_project/app/authentication/presentation/splash-screen/view/splash-screen-view.dart';
 import 'package:clean_architecture_project/app/navigation-service.dart';
 import 'package:clean_architecture_project/injection_container.dart' as di;
 import 'package:firebase_core/firebase_core.dart';
@@ -49,7 +50,8 @@ class SomethingWentWrong extends StatelessWidget {
 class MyAwesomeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(title: 'Flutter Demo Home Page');
+    // return MyHomePage(title: 'Flutter Demo Home Page');
+    return SplashScreenView();
   }
 }
 
@@ -73,6 +75,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       navigatorKey: di.serviceLocator<NavigationService>().navigatorKey,
+      onGenerateRoute: NavigationService.generateRoute,
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       home: App(),
     );

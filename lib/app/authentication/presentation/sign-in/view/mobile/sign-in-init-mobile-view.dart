@@ -1,4 +1,5 @@
 import 'package:clean_architecture_project/app/authentication/presentation/sign-in/sign-in-controller.dart';
+import 'package:clean_architecture_project/app/authentication/presentation/sign-in/view/widgets/signin-content-body.dart';
 import 'package:flutter/material.dart';
 
 class SignInInitMobileView extends StatefulWidget {
@@ -25,34 +26,11 @@ class _SignInInitMobileViewState extends State<SignInInitMobileView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      child: Column(
-        children: [
-          SizedBox(height: 100),
-          Text("Sign In"),
-          TextFormField(
-            controller: _emailTextController,
-            decoration:
-                InputDecoration(labelText: "Email", hintText: "abc@gmail.com"),
-          ),
-          TextFormField(
-            controller: _passwordTextController,
-            decoration: InputDecoration(
-              labelText: "Password",
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                if (_emailTextController.text.isNotEmpty &&
-                    _passwordTextController.text.isNotEmpty) {
-                  widget.controller.userSignIn(
-                      email: _emailTextController.text,
-                      password: _passwordTextController.text);
-                }
-              },
-              child: Text("Sign In"))
-        ],
-      ),
-    ));
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            child: SignInContentBody(
+              controller: widget.controller,
+              emailTextController: _emailTextController,
+              passwordTextController: _passwordTextController,
+            )));
   }
 }
