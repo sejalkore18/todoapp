@@ -9,6 +9,7 @@ class SplashScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.checkUserSignIn();
     return Scaffold(
         body: Center(
       child: Icon(Icons.sanitizer),
