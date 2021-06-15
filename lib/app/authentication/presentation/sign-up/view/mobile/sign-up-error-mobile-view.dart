@@ -25,17 +25,18 @@ class _SignUpErrorMobileViewState extends State<SignUpErrorMobileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         body: Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      child: Column(
-        children: [
-          SignUpContentBody(
-              emailTextController: _emailTextController,
-              passwordTextController: _passwordTextController,
-              controller: widget.controller),
-          Text("Error")
-        ],
-      ),
-    ));
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Column(
+            children: [
+              SignUpContentBody(
+                  emailTextController: _emailTextController,
+                  passwordTextController: _passwordTextController,
+                  controller: widget.controller),
+              Text("Error")
+            ],
+          ),
+        ));
   }
 }

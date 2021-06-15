@@ -25,6 +25,7 @@ class _SignUpInitMobileViewState extends State<SignUpInitMobileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         body: Container(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: SignUpContentBody(
