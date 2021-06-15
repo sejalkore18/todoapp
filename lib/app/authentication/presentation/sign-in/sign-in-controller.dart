@@ -45,7 +45,8 @@ class SignInController extends Controller {
         },
         (error) {
           //New State = Error State
-          _stateMachine.onEvent(new SignInErrorEvent());
+          _stateMachine
+              .onEvent(new SignInErrorEvent(email: email, password: password));
           refreshUI();
         },
       ),
