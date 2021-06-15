@@ -39,7 +39,12 @@ class SignInContentBody extends StatelessWidget {
                     password: passwordTextController.text);
               }
             },
-            child: Text("Sign In"))
+            child: Text("Sign In")),
+        TextButton(
+            onPressed: () {
+              controller.navigateToSignUp();
+            },
+            child: Text("Got To Sign Up")),
       ],
     );
   }
