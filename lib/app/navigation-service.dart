@@ -1,4 +1,5 @@
 import 'package:clean_architecture_project/app/authentication/presentation/sign-in/view/sign-in-view.dart';
+import 'package:clean_architecture_project/app/authentication/presentation/sign-up/view/sign-up-view.dart';
 import 'package:clean_architecture_project/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ class NavigationService {
 
   static const String homePageRoute = '/home-page';
   static const String signInPageRoute = '/sign-in-page';
+  static const String signUpPageRoute = '/sign-up-page';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -26,6 +28,15 @@ class NavigationService {
             name: NavigationService.signInPageRoute,
           ),
         );
+
+      case signUpPageRoute:
+        return MaterialPageRoute(
+          builder: (_) => SignUpView(),
+          settings: RouteSettings(
+            name: NavigationService.signUpPageRoute,
+          ),
+        );
+
       default:
         throw Exception("NavigationService: Invalid Navigation");
     }
