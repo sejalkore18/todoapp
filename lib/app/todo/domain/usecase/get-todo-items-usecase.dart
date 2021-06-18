@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:clean_architecture_project/app/todo/domain/entity/todo-item-entity.dart';
 import 'package:clean_architecture_project/app/todo/domain/repository/todo-repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -7,9 +8,12 @@ class GetTodoItemUsecase extends CompletableUseCase<void> {
   GetTodoItemUsecase(this._repository);
 
   @override
-  Future<Stream<streamType>> buildUseCaseStream(params) async {
-    final StreamController<streamType> streamController = StreamController();
+  Future<Stream<List<TodoItemEntity>>> buildUseCaseStream(params) async {
+    final StreamController<List<TodoItemEntity>> streamController =
+        StreamController();
     try {
+      List<TodoItemEntity> list = await _repository.getTodoItems();
+      streamController.add(list);
       streamController.close();
     } catch (error) {
       print('error in getting tags : error :  GetTodoItemUsecase ');
