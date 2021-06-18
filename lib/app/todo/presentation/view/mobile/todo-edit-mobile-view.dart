@@ -49,6 +49,16 @@ class _TodoEditMobileViewState extends State<TodoEditMobileView> {
           decoration: InputDecoration(
               labelText: "Description", hintText: "Add description..."),
         ),
+        TextButton(
+            onPressed: () {
+              if (_titleTextController.text.isNotEmpty &&
+                  _descriptionTextController.text.isNotEmpty) {
+                widget.controller.editTodo(
+                    title: _titleTextController.text,
+                    description: _descriptionTextController.text);
+              }
+            },
+            child: Text("Edit")),
       ])),
     );
   }
