@@ -51,7 +51,12 @@ class TodoInitState extends TodoState {}
 
 class TodoErrorState extends TodoState {}
 
-class TodoEditState extends TodoState {}
+class TodoEditState extends TodoState {
+  final String title;
+  final String description;
+
+  TodoEditState({required this.title, required this.description});
+}
 
 class TodoAddState extends TodoState {}
 

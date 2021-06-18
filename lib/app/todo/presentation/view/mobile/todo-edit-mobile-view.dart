@@ -1,4 +1,5 @@
 import 'package:clean_architecture_project/app/todo/presentation/todo-controller.dart';
+import 'package:clean_architecture_project/app/todo/presentation/todo-state-machine.dart';
 import 'package:flutter/material.dart';
 
 class TodoEditMobileView extends StatefulWidget {
@@ -14,11 +15,15 @@ class TodoEditMobileView extends StatefulWidget {
 class _TodoEditMobileViewState extends State<TodoEditMobileView> {
   late TextEditingController _titleTextController;
   late TextEditingController _descriptionTextController;
+  late TodoEditState _todoEditState;
 
   @override
   void initState() {
-    _titleTextController = new TextEditingController();
-    _descriptionTextController = new TextEditingController();
+    _todoEditState = widget.controller.getCurrentState() as TodoEditState;
+    _titleTextController =
+        new TextEditingController(text: _todoEditState.title);
+    _descriptionTextController =
+        new TextEditingController(text: _todoEditState.description);
     super.initState();
   }
 
