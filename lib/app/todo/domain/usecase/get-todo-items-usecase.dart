@@ -12,8 +12,8 @@ class GetTodoItemUsecase extends CompletableUseCase<void> {
     final StreamController<List<TodoItemEntity>> streamController =
         StreamController();
     try {
-      List<TodoItemEntity> list = await _repository.getTodoItems();
-      streamController.add(list);
+      List<TodoItemEntity> itemList = await _repository.getTodoItems();
+      streamController.add(itemList);
       streamController.close();
     } catch (error) {
       print('error in getting tags : error :  GetTodoItemUsecase ');

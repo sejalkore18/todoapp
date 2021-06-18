@@ -2,6 +2,7 @@ import 'package:clean_architecture_project/app/todo/domain/entity/todo-item-enti
 
 abstract class TodoRepository {
   Future<List<TodoItemEntity>> getTodoItems();
+
   Future<void> addTodoItem(
       {required String title, required String description});
 
