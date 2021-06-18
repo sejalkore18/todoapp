@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class TodoEditMobileView extends StatefulWidget {
   final TodoController controller;
+
   const TodoEditMobileView({Key? key, required this.controller})
       : super(key: key);
 
@@ -11,8 +12,39 @@ class TodoEditMobileView extends StatefulWidget {
 }
 
 class _TodoEditMobileViewState extends State<TodoEditMobileView> {
+  late TextEditingController _titleTextController;
+  late TextEditingController _descriptionTextController;
+
+  @override
+  void initState() {
+    _titleTextController = new TextEditingController();
+    _descriptionTextController = new TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
+          child: Column(children: [
+        SizedBox(height: 100),
+        Text('Title'),
+        SizedBox(height: 100),
+        TextFormField(
+          controller: _titleTextController,
+          decoration:
+              InputDecoration(labelText: "Title", hintText: "Add title..."),
+        ),
+        SizedBox(height: 100),
+        Text('Description'),
+        SizedBox(height: 100),
+        TextFormField(
+          controller: _descriptionTextController,
+          decoration: InputDecoration(
+              labelText: "Description", hintText: "Add description..."),
+        ),
+      ])),
+    );
   }
 }
