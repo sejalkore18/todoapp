@@ -5,7 +5,7 @@ import 'package:clean_architecture_project/app/todo/domain/repository/todo-repos
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class TodoRespositoryImpl extends TodoRespository {
+class TodoRespositoryImpl extends TodoRepository {
   final FirebaseAuth _fireAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 

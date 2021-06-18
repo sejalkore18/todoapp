@@ -1,6 +1,6 @@
 import 'package:clean_architecture_project/app/todo/domain/entity/todo-item-entity.dart';
 
-abstract class TodoRespository {
+abstract class TodoRepository {
   Future<Stream<TodoItemEntity>> getTodoItems({required String userID});
   Future<void> addTodoItem(
       {required String userID,
