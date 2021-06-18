@@ -9,4 +9,7 @@ abstract class TodoRepository {
       {required String itemID,
       required String title,
       required String description});
+
+  Future<String> getTodoItemID(
+      {required String title, required String description});
 }

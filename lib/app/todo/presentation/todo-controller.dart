@@ -1,5 +1,8 @@
 import 'package:clean_architecture_project/app/navigation-service.dart';
+import 'package:clean_architecture_project/app/todo/presentation/todo-presenter.dart';
 import 'package:clean_architecture_project/app/todo/presentation/todo-state-machine.dart';
+import 'package:clean_architecture_project/core/presentation/observer.dart';
+import 'package:clean_architecture_project/injection_container.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 class TodoController extends Controller {
@@ -25,17 +28,16 @@ class TodoController extends Controller {
   }
 
   TodoState getCurrentState() {
-    return _stateMachine.getCurrentState()!;
+    return _stateMachine.getCurrentState();
   }
 
   void addTodo({required String title, required String description}) {
-    _stateMachine.onEvent(new TodoClickEvent());
-    refreshUI();
-    _presenter.userSignUpStatus(
+    // _stateMachine.onEvent(new TodoClickEvent());
+    // refreshUI();
+    _presenter.todoAddItem(
         new UseCaseObserver(
           () {
-            _navigationService.navigateTo(NavigationService.homePageRoute,
-                shouldReplace: true);
+            _navigationService.navigateBack();
           },
           (error) {
             _stateMachine.onEvent(new TodoErrorEvent());
@@ -44,5 +46,34 @@ class TodoController extends Controller {
         ),
         title: title,
         description: description);
+  }
+
+  void editTodo({required String title, required String description}) {
+    // _stateMachine.onEvent(new TodoClickEvent());
+    // refreshUI();
+    _presenter.todoEditItem(
+        new UseCaseObserver(
+          () {
+            _navigationService.navigateBack();
+          },
+          (error) {
+            _stateMachine.onEvent(new TodoErrorEvent());
+            refreshUI();
+          },
+        ),
+        title: title,
+        description: description);
+  }
+
+  void getTodo() {
+    // _stateMachine.onEvent(new TodoClickEvent());
+    // refreshUI();
+    _presenter.todoGetItem(new UseCaseObserver(
+      () {},
+      (error) {
+        _stateMachine.onEvent(new TodoErrorEvent());
+        refreshUI();
+      },
+    ));
   }
 }
