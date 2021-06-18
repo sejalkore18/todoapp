@@ -13,6 +13,11 @@ class TodoInitMobileView extends StatefulWidget {
 class _TodoInitMobileViewState extends State<TodoInitMobileView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
+        child: ListView.builder(itemBuilder: itemBuilder),
+      ),
+    );
   }
 }

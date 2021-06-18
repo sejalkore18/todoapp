@@ -9,40 +9,45 @@ class TodoRespositoryImpl extends TodoRepository {
   final FirebaseAuth _fireAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  // getCurrentUser() {
-  //   if (_fireAuth.currentUser == null)
-  //     throw ("Current user is NULL : TodoRepositoryImpl");
-  //   else
-  //     // return _fireAuth.currentUser!;
-  //     return;
-  // }
+  User getCurrentUser() {
+    if (_fireAuth.currentUser == null)
+      throw ("Current user is NULL : TodoRepositoryImpl");
+    else
+      return _fireAuth.currentUser!;
+  }
 
   @override
-  Future<Stream<TodoItemEntity>> getTodoItems({required String userID}) async {
-    StreamController<TodoItemEntity> _streamController = new StreamController();
-    throw UnimplementedError();
+  Future<List<TodoItemEntity>> getTodoItems() async {
+    User user = getCurrentUser();
+
+    List<TodoItemEntity> todoList = [];
+
+    QuerySnapshot querySnapshot = await _firebaseFirestore
+        .collection(FirebaseKeys.collectionKeyNameUsers)
+        .doc(user.uid)
+        .collection(FirebaseKeys.collectionKeyNameTodoList)
+        .get();
+
+    for (int i = 0; i < querySnapshot.docs.length; i++) {
+      todoList[i] = new TodoItemEntity(
+          itemID: querySnapshot.docs[i].id,
+          title: querySnapshot.docs[i]['title'],
+          description: querySnapshot.docs[i]['description'],
+          time: Timestamp.now());
+    }
+    return todoList;
   }
 
   @override
   Future<void> addTodoItem(
-      {required String userID,
-      required String title,
-      required String description}) async {
-    DocumentReference doc = await _firebaseFirestore
-        .collection(FirebaseKeys.collectionKeyNameUsers)
-        .doc(userID)
-        .collection(FirebaseKeys.collectionKeyNameTodoList)
-        .add({
-      FirebaseKeys.keyNameTitle: title,
-      FirebaseKeys.keyNameDescription: description,
-      FirebaseKeys.keyNameTime: Timestamp.now()
-    });
+      {required String title, required String description}) async {
+    User user = getCurrentUser();
+
     await _firebaseFirestore
         .collection(FirebaseKeys.collectionKeyNameUsers)
-        .doc(userID)
+        .doc(user.uid)
         .collection(FirebaseKeys.collectionKeyNameTodoList)
-        .doc(doc.id)
-        .set({
+        .add({
       FirebaseKeys.keyNameTitle: title,
       FirebaseKeys.keyNameDescription: description,
       FirebaseKeys.keyNameTime: Timestamp.now()
@@ -51,13 +56,14 @@ class TodoRespositoryImpl extends TodoRepository {
 
   @override
   Future<void> editTodoItem(
-      {required String userID,
-      required String itemID,
+      {required String itemID,
       required String title,
       required String description}) async {
+    User user = getCurrentUser();
+
     await _firebaseFirestore
         .collection(FirebaseKeys.collectionKeyNameUsers)
-        .doc(userID)
+        .doc(user.uid)
         .collection(FirebaseKeys.collectionKeyNameTodoList)
         .doc(itemID)
         .set({
@@ -67,6 +73,3 @@ class TodoRespositoryImpl extends TodoRepository {
     });
   }
 }
-
-//Issues:
-// 1. User ID = _fireAuth.currentUser---> Is this the way we use it..? I guess so...!

@@ -7,9 +7,10 @@ class AddTodoItemUsecase extends CompletableUseCase<void> {
   AddTodoItemUsecase(this._repository);
 
   @override
-  Future<Stream<streamType>> buildUseCaseStream(params) async {
-    final StreamController<streamType> streamController = StreamController();
+  Future<Stream<void>> buildUseCaseStream(params) async {
+    final StreamController<void> streamController = StreamController();
     try {
+      await _repository.addTodoItem(title: title, description: description);
       streamController.close();
     } catch (error) {
       print('error in getting tags : error :  AddTodoItemUsecase ');

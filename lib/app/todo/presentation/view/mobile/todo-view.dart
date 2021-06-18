@@ -26,6 +26,11 @@ class TodoViewState extends ResponsiveViewState<TodoView, TodoController> {
       print("Mobile View Called With State $currentStateType");
 
       switch (currentStateType) {
+        case TodoInitializationState:
+          return TodoLoadingView(
+            controller: controller,
+          );
+
         case TodoInitState:
           return TodoInitMobileView(
             controller: controller,

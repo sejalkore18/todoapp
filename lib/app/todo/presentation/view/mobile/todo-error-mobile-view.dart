@@ -13,6 +13,9 @@ class TodoErrorMobileView extends StatefulWidget {
 class _TodoErrorMobileViewState extends State<TodoErrorMobileView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Text('Error'),
+    );
   }
 }

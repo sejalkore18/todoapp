@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TodoItemEntity {
-  final String
-      itemID; //Not sure of this kyunki yeh document ka id hi itemID hoga firebase mein
+  final String itemID;
   final String title;
   final String description;
   final Timestamp time;
@@ -14,6 +13,3 @@ class TodoItemEntity {
     required this.time,
   });
 }
-
-//TODO:
-// Should it be final or not???
