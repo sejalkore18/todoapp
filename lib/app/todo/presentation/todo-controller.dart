@@ -52,7 +52,7 @@ class TodoController extends Controller {
       {required String itemID,
       required String title,
       required String description}) {
-    _navigationService.navigateBack();
+    // _navigationService.navigateBack();
     _presenter.todoEditItem(
         new UseCaseObserver(
           () {

@@ -17,7 +17,6 @@ class _TodoInitMobileViewState extends State<TodoInitMobileView> {
   @override
   void initState() {
     _todoInitState = widget.controller.getCurrentState() as TodoInitState;
-    // _todoInitState.itemList se fetch hoga yehhhhh lalalalala
     super.initState();
   }
 
@@ -26,7 +25,6 @@ class _TodoInitMobileViewState extends State<TodoInitMobileView> {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        //Display karna haiiiiii mujheeee
         child: _todoInitState.itemList.isEmpty
             ? Center(child: Text('Click the button to Add Todos'))
             : ListView.builder(
