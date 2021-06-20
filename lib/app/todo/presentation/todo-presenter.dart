@@ -25,9 +25,13 @@ class TodoPresenter extends Presenter {
   }
 
   void todoEditItem(UseCaseObserver observer,
-      {required String title, required String description}) {
-    _editTodoItemUsecase.execute(observer,
-        new EditTodoItemUsecaseParams(title: title, description: description));
+      {required String itemID,
+      required String title,
+      required String description}) {
+    _editTodoItemUsecase.execute(
+        observer,
+        new EditTodoItemUsecaseParams(
+            itemID: itemID, title: title, description: description));
   }
 
   void todoGetItem(UseCaseObserver observer) {

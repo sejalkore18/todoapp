@@ -11,13 +11,13 @@ class EditTodoItemUsecase
   Future<Stream<void>> buildUseCaseStream(params) async {
     final StreamController<void> streamController = StreamController();
     try {
-      String id = await _repository.getTodoItemID(
-          title: params!.title, description: params.description);
       await _repository.editTodoItem(
-          itemID: id, title: params.title, description: params.description);
+          itemID: params!.itemID,
+          title: params.title,
+          description: params.description);
       streamController.close();
     } catch (error) {
-      print('error in getting tags : error :  EditTodoItemUsecase ');
+      print('error in getting tags : $error :  EditTodoItemUsecase ');
       streamController.addError(error);
     }
     return streamController.stream;
@@ -25,10 +25,12 @@ class EditTodoItemUsecase
 }
 
 class EditTodoItemUsecaseParams {
+  final String itemID;
   final String title;
   final String description;
 
-  EditTodoItemUsecaseParams({required this.title, required this.description});
+  EditTodoItemUsecaseParams(
+      {required this.itemID, required this.title, required this.description});
 }
 
 //Idk idhar stream mein void kyu aaya haiiii???

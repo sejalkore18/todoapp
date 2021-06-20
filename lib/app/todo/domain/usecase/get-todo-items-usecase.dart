@@ -16,7 +16,7 @@ class GetTodoItemUsecase extends CompletableUseCase<void> {
       streamController.add(itemList);
       streamController.close();
     } catch (error) {
-      print('error in getting tags : error :  GetTodoItemUsecase ');
+      print('error in getting tags : $error :  GetTodoItemUsecase ');
       streamController.addError(error);
     }
     return streamController.stream;
