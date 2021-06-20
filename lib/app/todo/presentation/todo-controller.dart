@@ -66,16 +66,13 @@ class TodoController extends Controller {
   }
 
   void getTodo() {
-    _presenter.todoGetItem(new UseCaseObserver(
-      () {
-        _stateMachine.onEvent(new TodoInitEvent());
-        refreshUI();
-      },
-      (error) {
-        _stateMachine.onEvent(new TodoErrorEvent());
-        refreshUI();
-      },
-    ));
+    _presenter.todoGetItem(new UseCaseObserver(() {}, (error) {
+      _stateMachine.onEvent(new TodoErrorEvent());
+      refreshUI();
+    }, onNextFunc: (itemList) {
+      _stateMachine.onEvent(new TodoInitEvent(itemList: itemList));
+      refreshUI();
+    }));
   }
 
   void openAddDialog() {
@@ -83,7 +80,7 @@ class TodoController extends Controller {
     refreshUI();
   }
 
-  void openEditDialog(title, description) {
+  void openEditDialog({required String title, required String description}) {
     _stateMachine.onEvent(
         new TodoLongPressEvent(title: title, description: description));
     refreshUI();

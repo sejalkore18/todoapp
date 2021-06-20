@@ -1,3 +1,4 @@
+import 'package:clean_architecture_project/app/todo/domain/entity/todo-item-entity.dart';
 import 'package:clean_architecture_project/core/presentation/state-machine.dart';
 
 class TodoStateMachine extends StateMachine<TodoState, TodoEvent> {
@@ -13,7 +14,8 @@ class TodoStateMachine extends StateMachine<TodoState, TodoEvent> {
         break;
 
       case TodoInitEvent:
-        newState = new TodoInitState();
+        TodoInitEvent todoInitEvent = event as TodoInitEvent;
+        newState = new TodoInitState(itemList: todoInitEvent.itemList);
         break;
 
       case TodoErrorEvent:
@@ -25,9 +27,10 @@ class TodoStateMachine extends StateMachine<TodoState, TodoEvent> {
         break;
 
       case TodoLongPressEvent:
-        TodoLongPressEvent errorEvent = event as TodoLongPressEvent;
+        TodoLongPressEvent todoLongPressEvent = event as TodoLongPressEvent;
         newState = new TodoEditState(
-            title: errorEvent.title, description: errorEvent.description);
+            title: todoLongPressEvent.title,
+            description: todoLongPressEvent.description);
         break;
 
       default:
@@ -41,7 +44,10 @@ class TodoEvent {}
 
 class TodoInitializationEvent extends TodoEvent {}
 
-class TodoInitEvent extends TodoEvent {}
+class TodoInitEvent extends TodoEvent {
+  final List<TodoItemEntity> itemList;
+  TodoInitEvent({required this.itemList});
+}
 
 class TodoErrorEvent extends TodoEvent {}
 
@@ -58,7 +64,10 @@ class TodoState {}
 
 class TodoInitializationState extends TodoState {}
 
-class TodoInitState extends TodoState {}
+class TodoInitState extends TodoState {
+  final List<TodoItemEntity> itemList;
+  TodoInitState({required this.itemList});
+}
 
 class TodoErrorState extends TodoState {}
 
@@ -70,5 +79,3 @@ class TodoEditState extends TodoState {
 }
 
 class TodoAddState extends TodoState {}
-
-// Also initialization event kyu aayega??
