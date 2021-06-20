@@ -1,5 +1,7 @@
 import 'package:clean_architecture_project/app/authentication/presentation/sign-in/view/sign-in-view.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/view/sign-up-view.dart';
+import 'package:clean_architecture_project/app/todo/presentation/view/mobile/todo-loading-mobile-view.dart';
+import 'package:clean_architecture_project/app/todo/presentation/view/mobile/todo-view.dart';
 import 'package:clean_architecture_project/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ class NavigationService {
     switch (settings.name) {
       case homePageRoute:
         return MaterialPageRoute(
-          builder: (_) => MyHomePage(),
+          builder: (_) => TodoView(),
           settings: RouteSettings(
             name: NavigationService.homePageRoute,
           ),

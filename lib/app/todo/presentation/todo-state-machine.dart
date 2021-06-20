@@ -8,6 +8,10 @@ class TodoStateMachine extends StateMachine<TodoState, TodoEvent> {
     final eventType = event.runtimeType;
     TodoState newState = getCurrentState();
     switch (eventType) {
+      case TodoInitializationEvent:
+        newState = new TodoInitializationState();
+        break;
+
       case TodoInitEvent:
         newState = new TodoInitState();
         break;
@@ -21,7 +25,9 @@ class TodoStateMachine extends StateMachine<TodoState, TodoEvent> {
         break;
 
       case TodoLongPressEvent:
-        newState = new TodoEditState();
+        TodoLongPressEvent errorEvent = event as TodoLongPressEvent;
+        newState = new TodoEditState(
+            title: errorEvent.title, description: errorEvent.description);
         break;
 
       default:
@@ -39,7 +45,12 @@ class TodoInitEvent extends TodoEvent {}
 
 class TodoErrorEvent extends TodoEvent {}
 
-class TodoLongPressEvent extends TodoEvent {}
+class TodoLongPressEvent extends TodoEvent {
+  final String title;
+  final String description;
+
+  TodoLongPressEvent({required this.title, required this.description});
+}
 
 class TodoClickEvent extends TodoEvent {}
 
