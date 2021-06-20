@@ -4,6 +4,7 @@ import 'package:clean_architecture_project/app/todo/presentation/view/mobile/tod
 import 'package:clean_architecture_project/app/todo/presentation/view/mobile/todo-edit-mobile-view.dart';
 import 'package:clean_architecture_project/app/todo/presentation/view/mobile/todo-error-mobile-view.dart';
 import 'package:clean_architecture_project/app/todo/presentation/view/mobile/todo-init-mobile-view.dart';
+import 'package:clean_architecture_project/app/todo/presentation/view/mobile/todo-loading-mobile-view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -27,7 +28,7 @@ class TodoViewState extends ResponsiveViewState<TodoView, TodoController> {
 
       switch (currentStateType) {
         case TodoInitializationState:
-          return TodoLoadingView(
+          return TodoLoadingMobileView(
             controller: controller,
           );
 

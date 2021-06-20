@@ -32,12 +32,12 @@ class TodoController extends Controller {
   }
 
   void addTodo({required String title, required String description}) {
-    // _stateMachine.onEvent(new TodoClickEvent());
-    // refreshUI();
+    _navigationService.navigateBack();
     _presenter.todoAddItem(
         new UseCaseObserver(
           () {
-            _navigationService.navigateBack();
+            _stateMachine.onEvent(new TodoInitializationEvent());
+            refreshUI();
           },
           (error) {
             _stateMachine.onEvent(new TodoErrorEvent());
@@ -49,12 +49,12 @@ class TodoController extends Controller {
   }
 
   void editTodo({required String title, required String description}) {
-    // _stateMachine.onEvent(new TodoClickEvent());
-    // refreshUI();
+    _navigationService.navigateBack();
     _presenter.todoEditItem(
         new UseCaseObserver(
           () {
-            _navigationService.navigateBack();
+            _stateMachine.onEvent(new TodoInitializationEvent());
+            refreshUI();
           },
           (error) {
             _stateMachine.onEvent(new TodoErrorEvent());
@@ -66,14 +66,26 @@ class TodoController extends Controller {
   }
 
   void getTodo() {
-    // _stateMachine.onEvent(new TodoClickEvent());
-    // refreshUI();
     _presenter.todoGetItem(new UseCaseObserver(
-      () {},
+      () {
+        _stateMachine.onEvent(new TodoInitEvent());
+        refreshUI();
+      },
       (error) {
         _stateMachine.onEvent(new TodoErrorEvent());
         refreshUI();
       },
     ));
+  }
+
+  void openAddDialog() {
+    _stateMachine.onEvent(new TodoClickEvent());
+    refreshUI();
+  }
+
+  void openEditDialog(title, description) {
+    _stateMachine.onEvent(
+        new TodoLongPressEvent(title: title, description: description));
+    refreshUI();
   }
 }
