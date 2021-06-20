@@ -27,21 +27,24 @@ class _TodoInitMobileViewState extends State<TodoInitMobileView> {
       appBar: AppBar(),
       body: Container(
         //Display karna haiiiiii mujheeee
-        child: ListView.builder(
-          itemCount: _todoInitState.itemList.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-                title: Text('${_todoInitState.itemList[index].title}'),
-                subtitle: Text('${_todoInitState.itemList[index].description}'),
-                trailing: Text('${_todoInitState.itemList[index].time}'),
-                onLongPress: () => {
-                      widget.controller.openEditDialog(
-                          title: _todoInitState.itemList[index].title,
-                          description:
-                              _todoInitState.itemList[index].description),
-                    });
-          },
-        ),
+        child: _todoInitState.itemList.isEmpty
+            ? Center(child: Text('Click the button to Add Todos'))
+            : ListView.builder(
+                itemCount: _todoInitState.itemList.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                      title: Text('${_todoInitState.itemList[index].title}'),
+                      subtitle:
+                          Text('${_todoInitState.itemList[index].description}'),
+                      trailing: Text('${_todoInitState.itemList[index].time}'),
+                      onLongPress: () => {
+                            widget.controller.openEditDialog(
+                                title: _todoInitState.itemList[index].title,
+                                description:
+                                    _todoInitState.itemList[index].description),
+                          });
+                },
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
