@@ -29,11 +29,11 @@ class TodoRespositoryImpl extends TodoRepository {
         .get();
 
     for (int i = 0; i < querySnapshot.docs.length; i++) {
-      todoList[i] = new TodoItemEntity(
+      todoList.add(new TodoItemEntity(
           itemID: querySnapshot.docs[i].id,
-          title: querySnapshot.docs[i]['title'],
-          description: querySnapshot.docs[i]['description'],
-          time: Timestamp.now());
+          title: querySnapshot.docs[i][FirebaseKeys.keyNameTitle],
+          description: querySnapshot.docs[i][FirebaseKeys.keyNameDescription],
+          time: Timestamp.now()));
     }
     return todoList;
   }
@@ -71,12 +71,5 @@ class TodoRespositoryImpl extends TodoRepository {
       FirebaseKeys.keyNameDescription: description,
       FirebaseKeys.keyNameTime: Timestamp.now()
     });
-  }
-
-  @override
-  Future<String> getTodoItemID(
-      {required String title, required String description}) async {
-    String id = "abc"; //Logic to fetch id from the database
-    return id;
   }
 }

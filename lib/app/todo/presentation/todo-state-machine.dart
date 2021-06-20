@@ -29,6 +29,7 @@ class TodoStateMachine extends StateMachine<TodoState, TodoEvent> {
       case TodoLongPressEvent:
         TodoLongPressEvent todoLongPressEvent = event as TodoLongPressEvent;
         newState = new TodoEditState(
+            itemID: todoLongPressEvent.itemID,
             title: todoLongPressEvent.title,
             description: todoLongPressEvent.description);
         break;
@@ -52,10 +53,12 @@ class TodoInitEvent extends TodoEvent {
 class TodoErrorEvent extends TodoEvent {}
 
 class TodoLongPressEvent extends TodoEvent {
+  final String itemID;
   final String title;
   final String description;
 
-  TodoLongPressEvent({required this.title, required this.description});
+  TodoLongPressEvent(
+      {required this.itemID, required this.title, required this.description});
 }
 
 class TodoClickEvent extends TodoEvent {}
@@ -72,10 +75,12 @@ class TodoInitState extends TodoState {
 class TodoErrorState extends TodoState {}
 
 class TodoEditState extends TodoState {
+  final String itemID;
   final String title;
   final String description;
 
-  TodoEditState({required this.title, required this.description});
+  TodoEditState(
+      {required this.itemID, required this.title, required this.description});
 }
 
 class TodoAddState extends TodoState {}

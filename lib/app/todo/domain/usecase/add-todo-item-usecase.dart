@@ -14,7 +14,7 @@ class AddTodoItemUsecase extends CompletableUseCase<AddTodoItemUsecaseParams> {
           title: params!.title, description: params.description);
       streamController.close();
     } catch (error) {
-      print('error in getting tags : error :  AddTodoItemUsecase ');
+      print('error in getting tags : $error :  AddTodoItemUsecase ');
       streamController.addError(error);
     }
     return streamController.stream;

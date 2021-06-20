@@ -39,6 +39,7 @@ class _TodoInitMobileViewState extends State<TodoInitMobileView> {
                       trailing: Text('${_todoInitState.itemList[index].time}'),
                       onLongPress: () => {
                             widget.controller.openEditDialog(
+                                itemID: _todoInitState.itemList[index].itemID,
                                 title: _todoInitState.itemList[index].title,
                                 description:
                                     _todoInitState.itemList[index].description),

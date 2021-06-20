@@ -32,7 +32,7 @@ class TodoController extends Controller {
   }
 
   void addTodo({required String title, required String description}) {
-    _navigationService.navigateBack();
+    // _navigationService.navigateBack();
     _presenter.todoAddItem(
         new UseCaseObserver(
           () {
@@ -48,7 +48,10 @@ class TodoController extends Controller {
         description: description);
   }
 
-  void editTodo({required String title, required String description}) {
+  void editTodo(
+      {required String itemID,
+      required String title,
+      required String description}) {
     _navigationService.navigateBack();
     _presenter.todoEditItem(
         new UseCaseObserver(
@@ -61,6 +64,7 @@ class TodoController extends Controller {
             refreshUI();
           },
         ),
+        itemID: itemID,
         title: title,
         description: description);
   }
@@ -80,9 +84,12 @@ class TodoController extends Controller {
     refreshUI();
   }
 
-  void openEditDialog({required String title, required String description}) {
-    _stateMachine.onEvent(
-        new TodoLongPressEvent(title: title, description: description));
+  void openEditDialog(
+      {required String itemID,
+      required String title,
+      required String description}) {
+    _stateMachine.onEvent(new TodoLongPressEvent(
+        title: title, description: description, itemID: itemID));
     refreshUI();
   }
 }

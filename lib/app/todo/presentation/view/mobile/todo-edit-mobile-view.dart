@@ -54,6 +54,7 @@ class _TodoEditMobileViewState extends State<TodoEditMobileView> {
               if (_titleTextController.text.isNotEmpty &&
                   _descriptionTextController.text.isNotEmpty) {
                 widget.controller.editTodo(
+                    itemID: _todoEditState.itemID,
                     title: _titleTextController.text,
                     description: _descriptionTextController.text);
               }
