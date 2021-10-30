@@ -16,7 +16,7 @@ class SignInViewState
   SignInViewState() : super(new SignInController());
 
   @override
-  Widget get desktopView => throw UnimplementedError();
+  Widget get desktopView => mobileView;
 
   @override
   Widget get mobileView {
@@ -49,8 +49,8 @@ class SignInViewState
   }
 
   @override
-  Widget get tabletView => throw UnimplementedError();
+  Widget get tabletView => mobileView;
 
   @override
-  Widget get watchView => throw UnimplementedError();
+  Widget get watchView => mobileView;
 }

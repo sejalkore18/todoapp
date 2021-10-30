@@ -1,4 +1,6 @@
+import 'package:clean_architecture_project/app/local-database/database/shared.dart';
 import 'package:clean_architecture_project/app/navigation-service.dart';
+import 'package:clean_architecture_project/app/todo/domain/entity/todo-item-entity.dart';
 import 'package:clean_architecture_project/app/todo/presentation/todo-presenter.dart';
 import 'package:clean_architecture_project/app/todo/presentation/todo-state-machine.dart';
 import 'package:clean_architecture_project/core/presentation/observer.dart';
@@ -8,7 +10,9 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 class TodoController extends Controller {
   final TodoPresenter _presenter;
   final TodoStateMachine _stateMachine = new TodoStateMachine();
-  final _navigationService = serviceLocator<NavigationService>();
+  final NavigationService _navigationService =
+      serviceLocator<NavigationService>();
+  final SharedDb database = serviceLocator<SharedDb>();
   TodoController()
       : _presenter = serviceLocator<TodoPresenter>(),
         super();
@@ -33,19 +37,28 @@ class TodoController extends Controller {
 
   void addTodo({required String title, required String description}) {
     // _navigationService.navigateBack();
-    _presenter.todoAddItem(
-        new UseCaseObserver(
-          () {
-            _stateMachine.onEvent(new TodoInitializationEvent());
-            refreshUI();
-          },
-          (error) {
-            _stateMachine.onEvent(new TodoErrorEvent());
-            refreshUI();
-          },
-        ),
-        title: title,
-        description: description);
+
+    // final Database db;
+    database.database!.insertRow(
+        todo: new TodoItemEntity(
+            itemID: "gfhfghghfhfg",
+            title: title,
+            description: description,
+            time: null));
+
+    // _presenter.todoAddItem(
+    //     new UseCaseObserver(
+    //       () {
+    // _stateMachine.onEvent(new TodoInitializationEvent());
+    // refreshUI();
+    //       },
+    //       (error) {
+    //         _stateMachine.onEvent(new TodoErrorEvent());
+    //         refreshUI();
+    //       },
+    //     ),
+    //     title: title,
+    //     description: description);
   }
 
   void editTodo(
@@ -77,6 +90,11 @@ class TodoController extends Controller {
       _stateMachine.onEvent(new TodoInitEvent(itemList: itemList));
       refreshUI();
     }));
+  }
+
+  getSqlTodo() {
+    print(1);
+    database.database!.getTodo();
   }
 
   void openAddDialog() {

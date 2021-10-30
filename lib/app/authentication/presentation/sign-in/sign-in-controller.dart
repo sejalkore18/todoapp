@@ -25,7 +25,7 @@ class SignInController extends Controller {
   void onInitState();
 
   @override
-  void onDispose() {
+  void onDisposed() {
     _presenter.dispose();
     super.onDisposed();
   }

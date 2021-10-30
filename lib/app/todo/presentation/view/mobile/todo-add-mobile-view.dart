@@ -56,6 +56,5 @@ class _TodoAddMobileViewState extends State<TodoAddMobileView> {
             child: Text("Add")),
       ])),
     );
-    ;
   }
 }

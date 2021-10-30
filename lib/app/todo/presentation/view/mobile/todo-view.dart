@@ -17,7 +17,7 @@ class TodoViewState extends ResponsiveViewState<TodoView, TodoController> {
   TodoViewState() : super(new TodoController());
 
   @override
-  Widget get desktopView => throw UnimplementedError();
+  Widget get desktopView => mobileView;
 
   @override
   Widget get mobileView {
@@ -59,8 +59,8 @@ class TodoViewState extends ResponsiveViewState<TodoView, TodoController> {
   }
 
   @override
-  Widget get tabletView => throw UnimplementedError();
+  Widget get tabletView => mobileView;
 
   @override
-  Widget get watchView => throw UnimplementedError();
+  Widget get watchView => mobileView;
 }

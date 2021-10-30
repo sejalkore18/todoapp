@@ -13,7 +13,6 @@ class TodoInitMobileView extends StatefulWidget {
 
 class _TodoInitMobileViewState extends State<TodoInitMobileView> {
   late TodoInitState _todoInitState;
-
   @override
   void initState() {
     _todoInitState = widget.controller.getCurrentState() as TodoInitState;
@@ -24,9 +23,44 @@ class _TodoInitMobileViewState extends State<TodoInitMobileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
+      body:
+          // StreamBuilder<List<dynamic>>(
+          //   builder: (context, snapshot) {
+          //     if (snapshot.connectionState == ConnectionState.waiting) {
+          //       return Center(child: CircularProgressIndicator());
+          //     }
+
+          //     if (!snapshot.hasData) {
+          //       return Center(child: Text('no data!'));
+          //     }
+
+          //     final activeTodos = snapshot.data!;
+
+          //     return ListView.builder(
+          //       itemCount: activeTodos.length,
+          //       itemBuilder: (context, index) {
+          //         return Container(
+          //           height: 50,
+          //           width: 100,
+          //           color: Colors.red,
+          //         );
+          //       },
+          //     );
+          //   },
+          // ),
+
+          Container(
         child: _todoInitState.itemList.isEmpty
-            ? Center(child: Text('Click the button to Add Todos'))
+            ? Column(
+                children: [
+                  Center(child: Text('Click the button to Add Todos')),
+                  TextButton(
+                      onPressed: () {
+                        widget.controller.getSqlTodo();
+                      },
+                      child: Text("Get Todo console"))
+                ],
+              )
             : ListView.builder(
                 itemCount: _todoInitState.itemList.length,
                 itemBuilder: (context, index) {

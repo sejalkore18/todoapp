@@ -2,7 +2,6 @@ import 'package:clean_architecture_project/app/authentication/presentation/sign-
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-state-machine.dart';
 import 'package:clean_architecture_project/app/navigation-service.dart';
 import 'package:clean_architecture_project/core/presentation/observer.dart';
-import 'package:clean_architecture_project/core/presentation/state-machine.dart';
 import 'package:clean_architecture_project/injection_container.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -26,7 +25,7 @@ class SignUpController extends Controller {
   void onInitState();
 
   @override
-  void onDispose() {
+  void onDisposed() {
     _presenter.dispose();
     super.onDisposed();
   }

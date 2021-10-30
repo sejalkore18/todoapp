@@ -5,6 +5,7 @@ import 'package:clean_architecture_project/app/authentication/domain/usecase/use
 import 'package:clean_architecture_project/app/authentication/presentation/sign-in/sign-in-presenter.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/sign-up/sign-up-presenter.dart';
 import 'package:clean_architecture_project/app/authentication/presentation/splash-screen/splash-screen-presenter.dart';
+import 'package:clean_architecture_project/app/local-database/database/shared.dart';
 import 'package:clean_architecture_project/app/navigation-service.dart';
 import 'package:clean_architecture_project/app/authentication/domain/usecase/check-user-sign-in-usecase.dart';
 import 'package:clean_architecture_project/app/authentication/domain/usecase/user-sign-in-usecase.dart';
@@ -18,8 +19,11 @@ import 'package:clean_architecture_project/app/todo/presentation/todo-presenter.
 import 'package:get_it/get_it.dart';
 
 final serviceLocator = GetIt.instance;
+
 Future<void> init() async {
   serviceLocator.registerLazySingleton(() => NavigationService());
+  serviceLocator.registerLazySingleton(() => SharedDb());
+
   // usecase
   // auth
   serviceLocator

@@ -14,7 +14,7 @@ class SplashScreenViewState
   SplashScreenViewState() : super(new SplashScreenController());
 
   @override
-  Widget get desktopView => throw UnimplementedError();
+  Widget get desktopView => mobileView;
 
   @override
   Widget get mobileView {
@@ -35,8 +35,8 @@ class SplashScreenViewState
   }
 
   @override
-  Widget get tabletView => throw UnimplementedError();
+  Widget get tabletView => mobileView;
 
   @override
-  Widget get watchView => throw UnimplementedError();
+  Widget get watchView => mobileView;
 }

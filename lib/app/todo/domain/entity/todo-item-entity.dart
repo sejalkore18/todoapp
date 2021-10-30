@@ -4,7 +4,7 @@ class TodoItemEntity {
   final String itemID;
   final String title;
   final String description;
-  final Timestamp time;
+  final Timestamp? time;
 
   TodoItemEntity({
     required this.itemID,
@@ -12,4 +12,12 @@ class TodoItemEntity {
     required this.description,
     required this.time,
   });
+
+  static TodoItemEntity fromMap({required Map<String, dynamic> data}) {
+    return TodoItemEntity(
+        itemID: data['itemId'],
+        title: data['title'],
+        description: data['description'],
+        time: data['time']);
+  }
 }

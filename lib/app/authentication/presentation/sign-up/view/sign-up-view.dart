@@ -16,7 +16,7 @@ class SignUpViewState
   SignUpViewState() : super(new SignUpController());
 
   @override
-  Widget get desktopView => throw UnimplementedError();
+  Widget get desktopView => mobileView;
   @override
   Widget get mobileView {
     return ControlledWidgetBuilder<SignUpController>(
@@ -48,7 +48,7 @@ class SignUpViewState
   }
 
   @override
-  Widget get tabletView => throw UnimplementedError();
+  Widget get tabletView => mobileView;
   @override
-  Widget get watchView => throw UnimplementedError();
+  Widget get watchView => mobileView;
 }
